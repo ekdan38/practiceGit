@@ -1,8 +1,11 @@
 package com.example.swyptest.service;
 
+import com.example.swyptest.DuplicatedNicknameException;
+import com.example.swyptest.ErrorCode;
 import com.example.swyptest.domain.Swyp;
 import com.example.swyptest.repository.SwypRepository;
 import com.example.swyptest.web.dto.SignupRequestDto;
+import com.example.swyptest.web.dto.UserDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -17,10 +20,15 @@ public class SwypServiceImpl implements SwypService{
     private final SwypRepository repository;
 
     @Override
-    public Long singUp(SignupRequestDto requestDto) {
+    public UserDto singUp(UserDto userDto) {
+        if(userDto.getAge() == 1){
+            throw new DuplicatedNicknameException();
+        }
 
-        Swyp swyp = Swyp.createSwyp(requestDto.getName(), requestDto.getAge());
-        repository.save(swyp);
-        return swyp.getId();
+        return userDto;
+
+//        Swyp swyp = Swyp.createSwyp(requestDto.getName(), requestDto.getAge());
+//        repository.save(swyp);
+//        return swyp.getId();
     }
 }

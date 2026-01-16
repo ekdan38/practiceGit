@@ -1,0 +1,9 @@
+## docker-compose.yml
+#version: '3'
+#services:
+#  trothcam:
+#    image: cd-cd-registry.kr.ncr.ntruss.com .
+#    container_name: remind-test-cont # 아무거나
+#    restart: always
+#    ports:
+#      - 8080:8080
